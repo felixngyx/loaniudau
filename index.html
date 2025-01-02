@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Story Counter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #9b6dff 0%, #ff99cc 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .story-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .story {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+        }
+
+        .story-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .story-content {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .story-nav {
+            margin-top: 15px;
+        }
+
+        .story-nav button {
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .story-nav button:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .counter-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            min-width: 80px;
+        }
+
+        .counter-box .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .counter-box .label {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .date-display {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .clock {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .status-box {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+        }
+
+        .status-title {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .profile-box {
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .heart-icon {
+            font-size: 2rem;
+            color: #ff4d4d;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div class="story-container">
+        <div class="story" id="story">
+            <h2 class="story-title">Câu Chuyện Bắt Đầu</h2>
+            <p class="story-content">Ngày đầu tiên chúng ta gặp nhau, thế giới như dừng lại trong giây phút ấy...</p>
+        </div>
+        <div class="story-nav">
+            <button onclick="changeStory(-1)">Trước</button>
+            <button onclick="changeStory(1)">Sau</button>
+        </div>
+    </div>
+
+    <div class="counter-container">
+        <div class="counter-box">
+            <div class="number" id="years">0</div>
+            <div class="label">Năm</div>
+        </div>
+        <div class="counter-box">
+            <div class="number" id="months">0</div>
+            <div class="label">Tháng</div>
+        </div>
+        <div class="counter-box">
+            <div class="number" id="weeks">0</div>
+            <div class="label">Tuần</div>
+        </div>
+        <div class="counter-box">
+            <div class="number" id="days">0</div>
+            <div class="label">Ngày</div>
+        </div>
+    </div>
+    <div class="clock" id="clock"></div>
+    <div class="date-display" id="startDate"># 14/10/2024 #</div>
+
+    <div class="status-box">
+        <div class="status-title">inlove status :</div>
+        <div class="status-content">
+            Cho năm mới 2025: Bình thản đối diện, nhẹ nhàng bước qua ❤️ Mọi chuyện rồi sẽ ổn thôi ❤️ - #bikipyeu
+        </div>
+    </div>
+
+    <div class="profile-container">
+        <div class="profile-box">
+            <img src="/placeholder.svg" alt="Profile 1" class="profile-img">
+            <div class="profile-name">Người iu của cô ấy</div>
+            <div class="tags">
+                <span class="tag">♂️ 20</span>
+                <span class="tag">Nhắn Mà</span>
+            </div>
+        </div>
+        <div class="heart-icon">❤️</div>
+        <div class="profile-box">
+            <img src="/placeholder.svg" alt="Profile 2" class="profile-img">
+            <div class="profile-name">Trinh Loan❤️</div>
+            <div class="tags">
+                <span class="tag">♀️ 16</span>
+                <span class="tag">Cự Giải</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startDate = new Date('2024-10-14');
+        const stories = [
+            { title: "Câu Chuyện Bắt Đầu", content: "Ngày đầu tiên chúng ta gặp nhau, thế giới như dừng lại trong giây phút ấy..." },
+            { title: "Những Ngày Đầu Tiên", content: "Mỗi khoảnh khắc bên nhau đều là những kỷ niệm đáng nhớ..." },
+            { title: "Tình Yêu Nở Hoa", content: "Tình cảm của chúng ta ngày càng sâu đậm, như những bông hoa đang nở rộ..." }
+        ];
+        let currentStoryIndex = 0;
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const weeks = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 * 7));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+
+            document.getElementById('years').textContent = Math.max(0, years);
+            document.getElementById('months').textContent = Math.max(0, months);
+            document.getElementById('weeks').textContent = Math.max(0, weeks);
+            document.getElementById('days').textContent = Math.max(0, days);
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function changeStory(direction) {
+            currentStoryIndex += direction;
+            if (currentStoryIndex < 0) currentStoryIndex = stories.length - 1;
+            if (currentStoryIndex >= stories.length) currentStoryIndex = 0;
+            updateStory();
+        }
+
+        function updateStory() {
+            const story = stories[currentStoryIndex];
+            document.querySelector('.story-title').textContent = story.title;
+            document.querySelector('.story-content').textContent = story.content;
+        }
+
+        // Update immediately and then every second
+        updateCounter();
+        updateClock();
+        updateStory();
+        setInterval(updateCounter, 1000);
+        setInterval(updateClock, 1000);
+        
+        const LOAN_BIRTHDATE = new Date('2008-07-16');
+const MY_BIRTHDATE = new Date('2004-12-21');
+
+function calculateAge(birthDate) {
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    
+    // Điều chỉnh tuổi nếu chưa đến ngày sinh trong năm hiện tại
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    return age;
+}
+
+function updateAges() {
+    // Tìm và cập nhật thẻ tuổi trong profile
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach(tag => {
+        if (tag.textContent.includes('♀️')) {
+            tag.textContent = `♀️ ${calculateAge(LOAN_BIRTHDATE)}`;
+        } else if (tag.textContent.includes('♂️')) {
+            tag.textContent = `♂️ ${calculateAge(MY_BIRTHDATE)}`;
+        }
+    });
+}
+
+
+      function updateStatus() {
+    const now = new Date();
+    const statusContent = document.querySelector('.status-content');
+    
+    // Kiểm tra xem có phải là ngày kỷ niệm không
+    const isAnniversaryDay = now.getDate() === startDate.getDate() && 
+                            now.getMonth() === startDate.getMonth();
+    
+    if (isAnniversaryDay) {
+        const monthsTogether = Math.floor((now - startDate) / (1000 * 60 * 60 * 24 * 30));
+        statusContent.innerHTML = `
+            Hôm nay là ngày ${startDate.getDate()}/${startDate.getMonth() + 1}, 
+            tròn ${monthsTogether} tháng bên nhau rồi đấy! Chúc mừng ngày kỷ niệm của chúng ta ❤️ #bikipyeu
+        `;
+    } else {
+        // Nội dung mặc định khi không phải ngày kỷ niệm
+        statusContent.innerHTML = `
+            Cho năm mới 2025: Bình thản đối diện, nhẹ nhàng bước qua ❤️ Mọi chuyện rồi sẽ ổn thôi ❤️ - #bikipyeu
+        `;
+    }
+}
+
+// Thêm vào phần khởi tạo ban đầu
+updateStatus();
+
+// Cập nhật status mỗi ngày vào lúc 00:00
+setInterval(() => {
+    const now = new Date();
+    if (now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0) {
+        updateStatus();
+    }
+}, 1000);
+
+// Thêm vào phần khởi tạo ban đầu
+updateAges();
+// Cập nhật tuổi mỗi ngày một lần (vào lúc 00:00)
+setInterval(() => {
+    const now = new Date();
+    if (now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0) {
+        updateAges();
+    }
+}, 1000);
+    </script>
+</body>
+</html>

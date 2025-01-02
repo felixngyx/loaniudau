@@ -159,6 +159,7 @@
 <body>
     
     
+    
     <div class="story-container">
         <div class="story" id="story">
             <h2 class="story-title">Câu Chuyện Bắt Đầu</h2>
@@ -217,6 +218,37 @@
             </div>
         </div>
     </div>
+    <div class="music-player" style="
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+">
+    <audio id="bgMusic" loop>
+        <source src="nhạc.mp3" type="audio/mpeg">
+    </audio>
+    <button id="playPauseBtn" style="
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px;
+    ">▶️</button>
+    <input type="range" id="volumeSlider" min="0" max="100" value="50" style="
+        width: 80px;
+    ">
+    <span style="
+        color: white;
+        font-size: 0.9rem;
+    ">🔊</span>
+</div>
 
     <script>
         const startDate = new Date('2024-10-14');
@@ -341,6 +373,32 @@ setInterval(() => {
         updateAges();
     }
 }, 1000);
+
+
+        const bgMusic = document.getElementById('bgMusic');
+const playPauseBtn = document.getElementById('playPauseBtn');
+const volumeSlider = document.getElementById('volumeSlider');
+let isPlaying = false;
+
+playPauseBtn.addEventListener('click', () => {
+    if (isPlaying) {
+        bgMusic.pause();
+        playPauseBtn.textContent = '▶️';
+    } else {
+        bgMusic.play();
+        playPauseBtn.textContent = '⏸️';
+    }
+    isPlaying = !isPlaying;
+});
+
+volumeSlider.addEventListener('input', (e) => {
+    bgMusic.volume = e.target.value / 100;
+});
+
+// Tắt nhạc khi người dùng rời khỏi trang
+window.addEventListener('beforeunload', () => {
+    bgMusic.pause();
+});
     </script>
 </body>
 </html>
